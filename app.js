@@ -1,14 +1,9 @@
-/* SUMMARY SO FAR
-The req object contains all the data of the incoming request when we visited the localhost:3000, which we in turn can do because we listen to requests on that port.
-NOTE: Headers are metadata, meta information added to requests and responses. */
-
-// Importing the core modules "http" and "fs"
 const http = require('http');
 const fs = require('fs');
 
-// Creating server and storing it in a variable
 const server = http.createServer((req, res) => {
     const url = req.url;
+    const method = req.method;
     if (url === '/') {
         res.write(` <html>
                     <head>
@@ -21,12 +16,15 @@ const server = http.createServer((req, res) => {
                         </form>
                     </body>
                 </html>`);
-        return res.end();  // response ends here    
-        // Here, return is important because we want to quit out of the function if we have entered the "if" block.
+        return res.end();
     }
-
-    // Filling the response object with some data
-    res.setHeader('Content-Type', 'text/html'); // NOTE: Content-Type is a default header that browser understands
+    if (url === '/message' && method === 'POST') {
+        fs.writeFileSync('message.txt', 'DUMMY');   // writing a new file
+        res.statusCode=302;                         // 302 stands for redirection
+        res.setHeader('Location', '/');
+        return res.end();
+    }
+    res.setHeader('Content-Type', 'text/html');
     res.write(` <html>
                     <head>
                         <title>My First Page</title>
@@ -35,8 +33,7 @@ const server = http.createServer((req, res) => {
                         <h1>Hello from My Node JS Server</h1>
                     </body>
                 </html>`);
-    res.end();  // response ends here
+    res.end();
 });
 
-// Listening to the incoming requests
 server.listen(3000);

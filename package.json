@@ -1,0 +1,24 @@
+{
+  "name": "express-basic",
+  "version": "1.0.0",
+  "description": "node, npm and express",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js",
+    "server-start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nishabdShunya/NodeJS-Basics.git"
+  },
+  "author": "Nishant Choubisa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nishabdShunya/NodeJS-Basics/issues"
+  },
+  "homepage": "https://github.com/nishabdShunya/NodeJS-Basics#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
